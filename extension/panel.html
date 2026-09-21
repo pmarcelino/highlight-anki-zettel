@@ -1,0 +1,48 @@
+<!doctype html>
+<!-- The highlight panel (swatches, note box, remove). Lives in its own
+     extension-origin iframe so the page being read can neither see what is
+     typed here nor forge what comes out; see panel.js. -->
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<style>
+  :root { color-scheme: light; }
+  html, body { margin: 0; background: transparent; }
+  body { display: inline-block; }
+  #panel {
+    display: flex; flex-direction: column; gap: 7px; padding: 7px 9px;
+    background: #2b2b2b; border-radius: 14px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, .4);
+    font: 13px/1.35 -apple-system, system-ui, sans-serif;
+  }
+  #row { display: flex; gap: 8px; align-items: center; }
+  button {
+    width: 18px; height: 18px; border-radius: 50%; padding: 0;
+    border: 2px solid #fff; cursor: pointer; color: #1a1a1a;
+    font: 11px/1 -apple-system, system-ui, sans-serif;
+    display: flex; align-items: center; justify-content: center;
+  }
+  #yellow { background: #ffe95c; }
+  #blue { background: #a6d4ff; }
+  #pen { background: #fff; }
+  #kill { background: #f5a3a3; display: none; }
+  #note {
+    display: none; width: 240px; resize: vertical; box-sizing: border-box;
+    padding: 6px 7px; border-radius: 8px; border: none; outline: none;
+    background: #fff; color: #1a1a1a; font: inherit;
+  }
+</style>
+</head>
+<body>
+<div id="panel">
+  <div id="row">
+    <button id="yellow" type="button" title="Highlight yellow — Anki cards"></button>
+    <button id="blue" type="button" title="Highlight blue — Zettel notes"></button>
+    <button id="pen" type="button" title="Add a note for generation">✎</button>
+    <button id="kill" type="button" title="Remove highlight">✗</button>
+  </div>
+  <textarea id="note" rows="3" placeholder="Note for generation…"></textarea>
+</div>
+<script src="panel.js"></script>
+</body>
+</html>

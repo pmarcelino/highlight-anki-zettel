@@ -1,0 +1,37 @@
+<!doctype html>
+<!-- PDF.js viewer owned by the extension: Chrome's built-in PDF viewer never
+     runs content scripts, this page does. `data-hlanki-pdf` tells content.js
+     it is painting a PDF text layer. -->
+<html lang="en" data-hlanki-pdf>
+<head>
+<meta charset="utf-8">
+<title>PDF</title>
+<link rel="stylesheet" href="pdfjs/pdf_viewer.css">
+<style>
+  html { background: #525659; }
+  body { margin: 0; }
+  .pdfViewer {
+    --page-margin: 0 auto 14px;
+    --page-border: none;
+    padding: 14px 0;
+  }
+  .pdfViewer .page { box-shadow: 0 1px 6px rgba(0, 0, 0, .5); }
+  /* Text-layer spans are absolutely positioned; the highlight spans nested
+     inside them must stay in flow or they escape their own line. */
+  .textLayer span[data-hlanki-id] { position: static; transform: none; }
+  #status {
+    padding: 28px;
+    color: #ddd;
+    font: 13px/1.5 -apple-system, system-ui, sans-serif;
+    text-align: center;
+    white-space: pre-wrap;
+  }
+</style>
+</head>
+<body>
+<div id="viewer" class="pdfViewer"></div>
+<div id="status">Loading PDF…</div>
+<script src="viewer.js"></script>
+<script src="content.js"></script>
+</body>
+</html>

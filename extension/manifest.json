@@ -1,0 +1,27 @@
+{
+  "manifest_version": 3,
+  "name": "Highlight → Anki / Zettel",
+  "version": "1.0.0",
+  "description": "Highlight any page or PDF; yellow becomes Anki cards, blue becomes Zettelkasten notes, written by Claude via a local server.",
+  "key": "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAiMeVsED7znMqhxlNC7p11ZWfGAI2nHUvZKb9u85ve4qmfrCzcHQmQWo7o559JYbRJqjm387zBbiTj2M9uXRU7rdD0pn2fy9x1Tpm9OsCiBXO9RA3kI2KAA8qz14pfaINBj4kj21p2mvJ5SHZLm1Osu8sAvmEiews+rM1KiRJ3UHoUWUv/YTPp8t0lHfEU0KBaqNMvF6BpLWWULW39H/0CSaGOtJoJx7meVoCWyl97QeHXsd0NHbCl6dQUdyRm5pPOCSTq9r0nU/RcRIWKMGT87FW8Mj2f7Tdn07N+ICi+49iuvGSFq+wZvbydcOfUumhsKjjPVGNo6IKuRip+8HYQwIDAQAB",
+  "permissions": ["contextMenus", "storage", "webRequest"],
+  "host_permissions": ["<all_urls>"],
+  "background": { "service_worker": "background.js" },
+  "action": { "default_title": "Highlight → Anki: toggle highlight mode" },
+  "web_accessible_resources": [
+    { "resources": ["panel.html"], "matches": ["<all_urls>"] }
+  ],
+  "commands": {
+    "toggle-highlight-mode": {
+      "suggested_key": { "default": "Alt+H" },
+      "description": "Toggle highlight mode on the current tab"
+    }
+  },
+  "content_scripts": [
+    {
+      "matches": ["<all_urls>"],
+      "js": ["content.js"],
+      "run_at": "document_idle"
+    }
+  ]
+}
